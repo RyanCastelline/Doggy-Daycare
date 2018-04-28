@@ -20,10 +20,6 @@ public class Dog {
 	private int dogId;
 	@Column(name="Owner_ID")
 	private int ownerId;
-	@Column(name="Age")
-	private int age;
-	@Column(name="Todays_Playground")	//new code 4-23
-	private int playgroundId;
 	@Column(name="Name")
 	private String name;
 	@Column(name="Breed")
@@ -48,12 +44,11 @@ public class Dog {
 	@ManyToOne
 	private Owner owner;
 	
-	public Dog(int ownerId, int age, int playgroundId, String name, String breed, String gender, Date registrationDate, boolean vaccinations,
+	public Dog(int ownerId, int age, int todaysPlayground, String name, String breed, String gender, Date registrationDate, boolean vaccinations,
 			Date lastVisit, boolean activeFlag) {
 		super();
 		this.ownerId = ownerId;
 		this.age = age;
-		this.playgroundId = playgroundId;
 		this.name = name;
 		this.breed = breed;
 		this.gender = gender;
@@ -62,7 +57,6 @@ public class Dog {
 		this.lastVisit = lastVisit;
 		this.activeFlag = activeFlag;
 		this.todaysPlayground = todaysPlayground;
-		this.todaysClasses = todaysClasses;
 	}
 	
 	public Dog() {
@@ -93,22 +87,6 @@ public class Dog {
 
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public int getPlaygroundId() {
-		return playgroundId;
-	}
-
-	public void setPlaygroundId(int playgroundId) {
-		this.playgroundId = playgroundId;
 	}
 
 	public String getName() {
@@ -209,7 +187,6 @@ public class Dog {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
 		result = prime * result + ownerId;
-		result = prime * result + playgroundId;
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
 		result = prime * result + todaysClasses;
 		result = prime * result + todaysPlayground;
@@ -262,8 +239,6 @@ public class Dog {
 			return false;
 		if (ownerId != other.ownerId)
 			return false;
-		if (playgroundId != other.playgroundId)
-			return false;
 		if (registrationDate == null) {
 			if (other.registrationDate != null)
 				return false;
@@ -283,7 +258,7 @@ public class Dog {
 
 	@Override
 	public String toString() {
-		return "Dog [dogId=" + dogId + ", ownerId=" + ownerId + ", age=" + age + ", playgroundId=" + playgroundId
+		return "Dog [dogId=" + dogId + ", ownerId=" + ownerId + ", age=" + age
 				+ ", name=" + name + ", breed=" + breed + ", gender=" + gender + ", registrationDate="
 				+ registrationDate + ", vaccinations=" + vaccinations + ", lastVisit=" + lastVisit + ", activeFlag="
 				+ activeFlag + ", owner=" + owner + "]";
